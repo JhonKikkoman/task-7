@@ -27,7 +27,8 @@ function DateTimePretty({ dateTime, date }: propTimePrettyT) {
   let f1, f2;
   // f1 = moment().diff(currentTime, 'hour', true);
   f2 = moment(currentTime).diff(date, 'hour', true);
-  console.log(f2);
+  const f3 = moment(f2).minutes();
+  console.log(f3);
   console.log(currentTime, date);
 
   return dateTime(diffDate);
