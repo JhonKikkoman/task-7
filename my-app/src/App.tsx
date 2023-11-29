@@ -20,10 +20,16 @@ type propTimePrettyT = {
 function DateTimePretty({ dateTime, date }: propTimePrettyT) {
   moment.locale('ru');
   const currentDate = moment().format('YYYY-MM-DD');
-  const currentTime = moment().format('YYYY-MM-DD HH:mm:ss');
+  const currentTime = moment().format();
   const diffDate = `${Math.trunc(
     Number(moment(currentDate).diff(date, 'years', true).toFixed(1))
   )} лет назад`;
+  let f1, f2;
+  // f1 = moment().diff(currentTime, 'hour', true);
+  f2 = moment(date).diff(currentTime, 'hour', true);
+  console.log(f2);
+  console.log(currentTime, date);
+
   return dateTime(diffDate);
 }
 
