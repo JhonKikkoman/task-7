@@ -13,30 +13,22 @@ type stateT = {
 };
 
 type propTimePrettyT = {
-  dateTime: (str: string, arg1: string) => JSX.Element;
+  dateTime: (str: string) => JSX.Element;
   date: string;
 };
 
 function DateTimePretty({ dateTime, date }: propTimePrettyT) {
-  console.log(date);
-  const timeCut = date.slice(10);
-  const dateCut: string = moment(
-    date.slice(0, 10),
-    'YYYY-MM-DD',
-    true
-  ).fromNow();
-
-  return dateTime(date, dateCut);
+  moment.locale('ru');
+  const currentDate = moment().format('YYYY-MM-DD');
+  const currentTime = moment().format('YYYY-MM-DD HH:mm:ss');
+  const diffDate = `${Math.trunc(
+    Number(moment(currentDate).diff(date, 'years', true).toFixed(1))
+  )} лет назад`;
+  return dateTime(diffDate);
 }
 
-function DateTime(str: string, arg1: string) {
-  return (
-    <p className='date'>
-      {str}
-      <br />
-      {arg1}
-    </p>
-  );
+function DateTime(str: string) {
+  return <p className='date'>{str}</p>;
 }
 
 function Video(props: propVideoT) {
@@ -61,7 +53,7 @@ function VideoList(props: any) {
 }
 
 export default function App() {
-  const [list, setList] = useState<stateT[]>([
+  const [list] = useState<stateT[]>([
     {
       url: 'https://www.youtube.com/embed/rN6nlNC9WQA?rel=0&amp;controls=0&amp;showinfo=0',
       date: '2017-07-31 13:24:00',
