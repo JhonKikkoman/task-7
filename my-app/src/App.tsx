@@ -26,7 +26,7 @@ function DateTimePretty({ dateTime, date }: propTimePrettyT) {
   )} лет назад`;
   let f1, f2;
   // f1 = moment().diff(currentTime, 'hour', true);
-  f2 = moment(currentTime).diff(date, 'hour', true);
+  f2 = moment(currentTime).diff(date, 'hour', true); // тут какой-то бред
   const f3 = moment(f2).minutes();
   console.log(f3);
   console.log(currentTime, date);
